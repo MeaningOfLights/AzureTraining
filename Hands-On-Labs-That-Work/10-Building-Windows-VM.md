@@ -123,8 +123,6 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 1. The system will validate your options and give you details about the VM being created.
 
-[//]: # (TODO NAB SPECIFIC SETTINGS In Gen 1 Azure Accounts follow these Network settings: ../images/network-settings-gen1.png)
-
 4. Click Create to create and deploy the VM. The Azure dashboard will show the VM being deployed. This may take several minutes. Copy the Public IP Address.
 
 ![Collect the IP Address](../images/configure-vm-9.png)

@@ -130,8 +130,6 @@ Same as Windows the VM creation experience in the portal is presented in a "wiza
 
 3. Click OK.
 
-[//]: # (NAB SPECIFIC SETTINGS In Gen 1 Azure Accounts follow these Network settings: ../images/network-settings-gen1.png)
- 
 #### 2.20.6 Configure the Management
 
 1. Turn off Boot diagnostics, leaving this enabled will create a boot log file in a Storage account that is not needed for this exercise.
@@ -197,8 +195,6 @@ Please don't skip this step!!
 ![PuTTY session](../images/PuttyLogin3.png)
 
 #### 2.20.10 Alternatively Login to the VM - via CloudShell
-
-> Cloud Shell isn't yet offically sanctioned yet at NAB.
 
 > We are using PuTTY for this exercise, this is optional, please skip to 2.20.11 if you're ok with PuTTY.
 
