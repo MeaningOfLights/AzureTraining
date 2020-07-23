@@ -26,6 +26,8 @@ The private key is what you present to verify your identity to your Linux VM whe
 
 You can use the same single public-private key pair to access multiple Azure VMs and services.
 
+TL;DR;
+
 To create a public-private key pair we use ssh-keygen available in tools like GitBash or Azures own Command in the Cloud called Cloud Shell.
 
 1. Sign into the Azure portal using the same account.
@@ -38,10 +40,10 @@ To create a public-private key pair we use ssh-keygen available in tools like Gi
 
 3. Make sure the CloudShell says Bash in the upper left. If it says PowerShell, use the drop-down to select Bash and select Confirm to change to the Bash shell.
 
-4. Type this command:
+4. Type this command to create the ssh keys (bogth the Private and the Public):
 
 ```
-ssh-keygen -t rsa -b 2048 to create the ssh key.
+ssh-keygen -t rsa -b 2048
 ```
 
 5. You will be prompted to enter a file in which to save the key pair. Just press Enter to save in the default location, listed in brackets.
@@ -49,6 +51,8 @@ ssh-keygen -t rsa -b 2048 to create the ssh key.
 6. You will be asked to enter a passphrase. You can type a passphrase for your SSH key or press Enter to continue without a passphrase. It's easy for training not to use a passphrase.
 
 7. The ssh-keygen command generates public and private keys with the default name of id_rsa in the ~/.ssh directory. Use the path to the public and private keys to display its contents with cat by typing **cat ~/.ssh/id_rsa.pub** and also **cat ~/.ssh/id_rsa** 
+
+>There's two files!!! You need to save both out to text files!!!
 
 8. Copy the output of these commands and save it somewhere, such as a text file to use later in this exercise.
 
@@ -76,7 +80,7 @@ Same as Windows the VM creation experience in the portal is presented in a "wiza
 
 1. For Resource group, create a new "VMLinuxRG" resource group.
 
-1. In the Instance Details section, enter a name for your VM, such as NCGNLIDA0001 (for 'Nab Cloud Guild' Linux Internal Desktop Application).
+1. In the Instance Details section, enter a name for your VM, such as NCGNLIDA0001 (for Linux Internal Desktop Application).
 
 >It's best practice to standardise your resource names so you can easily identify their purpose. Linux VM names are a bit limited - they must be between 1 and 64 characters, cannot contain non-ASCII or special characters, and must be unique in the current resource group.
 

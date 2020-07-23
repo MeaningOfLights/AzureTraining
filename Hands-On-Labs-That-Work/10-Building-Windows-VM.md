@@ -39,7 +39,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 1. For Resource group, create a [sandbox resource group name]
 
-1. In the Instance Details section, enter a name for your VM, such as NCGWIDA0001 (for 'Nab Cloud Guild' Windows Internal Desktop Application).
+1. In the Instance Details section, enter a name for your VM, such as NCGWIDA0001 (for Windows Internal Desktop Application).
 
 > It's best practice to standardise your resource names so you can easily identify their purpose. Windows VM names are a bit limited - they must be between 1 and 15 characters, cannot contain non-ASCII or special characters, and must be unique in the current resource group.
 
