@@ -250,7 +250,7 @@ az login
 
 2. You will need to enter the authentication code in the web browser.
 
-> Note: If you have problems with this, it can prompt you to AZ Login, try using a Incognito Window to reset your credentials or try an new PuTTY window, it does work! Also try https://aka.ms/devicelogin
+> Note: If you have problems with this, it can prompt you to AZ Login, try using a Incognito Window to reset your credentials or try an new PuTTY window, it does work! Also try https://stackoverflow.com/q/63048670/495455/
 
 ![Login from Linux VM](../images/LoginFromLinuxVM1.png)
 
