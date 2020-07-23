@@ -187,8 +187,6 @@ Invoke-WebRequest -Uri http://PasteUrlHere -Method POST -Body $params -UseBasicP
 
 #### 2.99.9 Expose Functions using API Management 
 
-> Note: At NAB we use Kong as our AIP gateway to load balance between Azure and AWS.
-
 For certification purposes if you're deploying a Function you should use the API Management as a REST service.
 
 It takes approx 10 minutes to setup, and we are focusing on Functions right now, so instead here's some pictures to illustrate how it looks, it's not part of this workshop:
