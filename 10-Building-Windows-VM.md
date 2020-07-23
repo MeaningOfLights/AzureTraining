@@ -35,11 +35,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 #### 2.10.2 Configure the VM settings
 
-Here I illustrate the Gen 1 NAB Azure settings:
-
-![Configure the VM](../images/configure-vm.jpg)
-
-1. Select the Subscription that should be billed for VM hours. Realise the screenshot is for NAB Gen 1.
+1. Select the Subscription that should be billed for VM hours.
 
 1. For Resource group, create a [sandbox resource group name]
 
