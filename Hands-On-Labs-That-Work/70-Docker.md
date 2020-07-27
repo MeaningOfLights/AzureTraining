@@ -118,7 +118,7 @@ cd ~/clouddrive
 > The command to create a new directory in Linux is mkdir directory name.
 
 ```
-mkdir ~/ipcheck
+mkdir ipcheck
 ```
 
 4.	Issue the command to change the directory to ~/clouddrive/ipcheck.
