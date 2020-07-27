@@ -243,9 +243,7 @@ The 4th is Queues.
 
 https://stackoverflow.com/questions/61362593
 
-TBC.. Sorry everyone I've had limited time to put this together and am ahead of the cool guys/girls beind HIP/CPS
-
-Let me show you on my own PC ..
+TBC.. 
 
 
 [activity]: ../icons/activity.png "Workshop Activity!"
