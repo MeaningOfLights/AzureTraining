@@ -1,200 +1,264 @@
-# Azure - Batch
+# Azure - Docker
 
 ## Purpose
 At the end of this module, you will:
-* Learn how to setup a Storage Account
-* Learn how to setup a Storage Account Blob Containers
-* Learn how to setup a Azure Batch Account
-* Learn how to setup a Azure Batch Pools, Jobs and Tasks
+* Create a VM by using the Azure Command-Line Interface (CLI).
+* Deploy a Docker container image to Azure Container Registry.
+* Deploy a container image into Container Registry and spin it up using Container Instances.
 
-## Using a Azure Batch Account
+### ![Create VM to host our Container][activity] 2.70.1 Create VM to host our Container
 
-In the Azure Portal let's go ahead and first create a Storage Account.
+In the Azure Portal let's create a VM to host our Container, in the first exercise we created a VM manually, this time lets create the VM programmatically! 
 
-#### 2.60.1 Create Stoage Account
+> This is a labourious exercise without much gain. I took it from Microsoft: https://microsoftlearning.github.io/AZ-204-DevelopingSolutionsforMicrosoftAzure/Instructions/Labs/AZ-204_05_lab.html. In the topic after next we'll create a Web Site and host it on Docker then spin it up on a Kubernetes Cluster. Often you will need a consoole based Docker Container for things such as scheduling tasks. This exercise demonstrates how to containerise a console app.
 
-The Storage Account will be used to store the application which is going to run on the underlying virtual machines in the Azure Batch Account. It will also be used to store the input files and the output files from the Azure Batch Account. So let's go ahead and do that!
+#### 2.70.2 Create Resource Group
 
-1. Click Storage Account on the left menu.
+First we'll go ahead and create a Resource Group with the following details:
 
-1. Click Add (+)
+1.	Name it ContainerCompute
 
-1. Enter a Storage Account name, eg: namestorage123.
+1.	Set the location Australia Southeast
 
-1. Choose the Australia Southeast region.
+#### 2.70.3 Create VM in using Cloud Shell
 
-1. Keep the replication as locally redundant storage (LRS), as we don't need high availability for this solution since this is just a demo. 
+![Cloud Shell](../images/cloud-shell-bash.png)
 
-![Storage Account](../images/StorageAccount.png)
+3.	Open a new Cloud Shell instance in the Azure portal using Bash
 
-6. In the Networking and Advanced tabs leave everything as is. 
-7. Click on Review and Create and then click Create for this Storage Account.
+4.	Run this az command with the –help flag to find a list of subgroups and commands at the root level of the CLI.
+```
+az -help
+```
+5.	Run this az vm command with the –help flag to find a list of subgroups and commands for Azure Virtual Machines:
+```
+az vm -help
+```
+4.	Run this az vm create command with the –help flag to find a list of arguments and examples for the Create Virtual Machine command:
+```
+az vm create -help
+```
+5.	Run this az vm create command to create a new VM with the following settings:
+* Resource group: ContainerCompute
+* Name: quickvm
+* Image: Debian
+* Username: student
+* Password: Password123!!!
 
-#### 2.60.2 Create Stoage Account Containers
-
-1. Once the Storage Account is in place go to the resource.
-
-1. Scroll down under the Blob Service menu and click Containers.
-
-1. Create a container called input (used to store all the input files which are going to go into the Batch Account).
-
-1. Optionally create another container called output, we won't use it in this demo (note the screenshot only shows an output folder, you need to create an Input folder).
-
-![Input & Output folders](../images/blobcontainers.png)
-
-5. Go back to the input container and upload our sample.MP4 file.
-
-![Upload our sample.MP4](../images/blobcontainers1.png)
-
-#### 2.60.3 Create Batch Account
-
-1. Now let's go ahead and create our Azure Batch Account, in the resourcestop search bar, search and choose Batch Account (not Batch Service) and click on Create.
-
-![Batch Account](../images/BatchService.png)
-
-2. Select a resource group and give an account name. namebatch123
-
-3. Choose the Australia SouthEast region.
-
-4. Select the Storage Account namestorage123
-
-![Batch Account](../images/BatchService1.png)
-
-5. Click Advanced and in the pool allocation mode you have two choices; either the Batch Account or the user subscription.
-
-* Choose the Batch Account the virtual machines used to do the processing as part of the Azure Batch Account will be managed by the account or the service itself.
-* If you want to manage the virtual machines yourself you can make it part of the user subscription, leave the default as the Batch Account.
-
-6. Don't add any tags simply click Review and Create to create the Batch Account.
-
-#### 2.60.4 Setup the Batch Account
-
-1. Once the Batch Account is deployed click on the Applications menu on the left hand.
-
-* We're going to associate our video processing application FFMPEG as part of our Azure Batch Account.
-
-> Please note you have to create a zip file out of the executable when the application is being used by the Azure Batch Account, it only accepts zip based files. Exe's or MSI's zipped up.
-
-![Setup Batch Account](../images/BatchService2.png)
-
-2. For an application ID enter the name: ffmpegbatch.
-3. Also enter the version number for our application 1.0
-4. Now we have to select our application package. Go ahead and upload the zipped FFMPEG.zip executable provided with in sample files.
-5. Click on Submit.
-
-Now our zip package is uploaded to our Storage Account and we can now see the application.
-
-#### 2.60.5 Setup the Batch Pool
-
-1. Click on the Pools menu under Batch Account to add a pool for our virtual machines.
-
-![Setup Batch Account](../images/BatchService3.png)
-
-2. Click on Add
-3. Specify a Pool ID: pool1
-4. Image Type: Windows 2016 as the underlying image for the virtual machines 
-5. Leave the size as one core and three point five GB of memory. 
-6. Next specify the number of dedicated nodes (1) and the number of low priority nodes (0).
-
-* Remember the low priority nodes are least expensive.
-* If there is a shortage of resources on the Azure platform overall low priority nodes will be taken back from you.
-* For the purpose of this demo I'm going to ensure that I have one dedicated node as part of my pool. If you want check out the auto scale features here. 
-* If you auto scale you need to provide a formula to scale the number of virtual machines in the pool. For now I'll just leave it as fixed. 
-* If you want you can decide on whether you want to have one task as a start task that will run on each node when it's created as part of the pool, for now I'll leave it as disabled.
-
-You can see there are many other options that you can specify as part of the pool.  
-
-![Setup Batch Account](../images/BatchService4.png)
-
-7. Specify the application packages that need to be installed in the pool of virtual machines.
-8. Choose the FFMPEG application and the version of 1.0 
-9. Click Select 
-
-![Setup Batch Account](../images/BatchService5.png)
-
-10. Finally click OK to add the pool
-11. Refresh the page and you can now see that the demo pool has been created.
-* You can see the allocation state is 'resizing' when it is creating the dedicated nodes. It's basically now spinning up a virtual machine as part of this pool.
-* Our video processing job will then run on this virtual machine in this pool.
-* Please note you can have a number of dedicated nodes and if you have multiple jobs they can run across these nodes in parallel. We have one node as part of the pool as part of our Batch Account for this demo.
-
-12. Wait until we can see our allocation state is ready to have one virtual machine as part of our pool.
-
-#### 2.60.6 Setup the Batch Job
-
-1. Now click on the Jobs menu under Pools and create a job to run as part of our Batch Account.
-1. Click on Add. 
-
-3. Give the job a name or job id.
-
-4. Select the pool.
-
-5. Click OK to create our job.
-
-Let's click on the job and now we can add tasks to this job.
-
-![Setup Batch Account](../images/BatchService6.png)
-
-#### 2.60.7 Setup the Batch Job Tasks
-
-We want to run a task that's going to convert the sample.MP4 file in our Storage Account blob container. 
-
-1. Go ahead and click on add Task.
-
-![Setup Batch Account](../images/BatchService7.png)
-
-2. Let's add the task ID or just set a name for the task: Task1
-3. Next is specifying the command line for what our task going to do.
-4. Add this command line.
+> Wait for the VM creation process to complete. After the process completes, the command will return a JavaScript Object Notation (JSON) file with details about the machine.
 
 ```
-cmd /c
-%AZ_BATCH_APP_PACKAGE_ffmpegbatch#1.0%\\ffmpeg.exe -i sample.mp4 -ss 00:00:01 -t 00:00:45.0 -q:a 0 -map a sample.mp3
+az vm create –name quickvm –resource-group ContainerCompute –image Debian –admin-username student –admin-password Password123!!!
 ```
 
-* Let's quickly examine the above command. We reference our package in the Batch Account via the AZ_BATCH_APP_PACKAGE_ default defined constant, followed by the package id and then the version number.
+6.	Use the az vm show command to find a more detailed JSON file that contains various metadata about the newly created VM.
 
-Using this path we can reference the application through the command line and the rest of the command is the same as the one we ran locally on our machines previously.
+```
+az vm show –ip <ip from above output>
+```
 
-![Setup Batch Account](../images/BatchService8.png)
+7.	Use the az vm list-ip-addresses command to list all the IP addresses associated with the VM: 
 
-Next the Azure Batch Account task needs to get the sample.MP4 file. Remember that's in our Storage Account so we have to specify it as part of the resource file.
+```
+az vm list-ip-addresses --resource-group ContainerCompute --name quickvm
+```
 
-5. Click on Resource Files
-6. Click Container
+8.	Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
 
-> Note that when the Azure Batch Account makes a reference to these storage container you have to make sure to use the shared access signature. This is a good security practice. In a subsequent chapter in of this course we have details of shared access signatures.
+```
+az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv
+```
 
-7. For now tick 'Include shared access signature' which expires in 7 days. 
-8. Click OK.
-9. Select the Storage Account.
-10. Select the Input folder.
-11. Click Select button.
-12. Tick the Resource Storage Account you specified.
-13. Click Submit.
-14. Click Submit for the task itself.
+9.	Run this command to store the results of the previous command in a new Bash shell variable named ipAddress: 
 
-![Setup Batch Account](../images/BatchService9.png)
+```
+ipAddress=$(az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)
+```
 
-We can go ahead and click on submit for the task itself.
-Now if you go ahead you can click on refresh to actually see what is the state of the task is, the task will automatically start running. 
+10.	Run this command to render the value of the Bash shell variable ipAddress: 
 
-![Setup Batch Account](../images/BatchService10.png)
+```
+echo $ipAddress
+```
 
-Now after about 5 or 10 seconds you can see that the state of the task is completed.
+10.	Run this command to connect to the VM that you created earlier in this lab by using the Secure Shell (SSH) tool and the IP address stored in the Bash shell variable ipAddress: 
 
-15. Click the task.
+```
+ssh student@$ipAddress
+```
 
-* If you go onto the menu 'Files on Node' you can now see your sample.MP3 file has been processed and download this file.
+12.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password Password123!!! when prompted for credentials
 
-* Our task has run as desired and although we've made up our Azure Batch Account to run a single job with a single task to basically convert a video file. Remember you can expand this to create multiple jobs with multiple tasks with multiple input files.
+13.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
 
-This comcludes this chapter on how to use the Azure Batch Account from the Azure portal.
+```
+uname -a
+```
+
+14.	Use the exit command to end your SSH session: 
+```
+exit
+```
+
+### ![Create and deploy Docker container image][activity] 2.70.4 Create a Docker container image and deploy container registry
+
+#### 2.70.5 Open the Cloud Shell and editor
+
+1.	In the Cloud Shell instance in the Azure portal.
+1.	Change the active directory to ~/clouddrive.
+
+> The command to change directory in Bash is *cd path*.
+
+```
+cd ~/clouddrive
+```
+
+3.	At the Cloud Shell command prompt, create a new directory named ipcheck in the ~/clouddrive directory.
+
+> The command to create a new directory in Linux is mkdir directory name.
+
+```
+mkdir ~/ipcheck
+```
+
+4.	Issue the command to change the directory to ~/clouddrive/ipcheck.
+5.	Use the dotnet new console –output . –name ipcheck command to create a new .NET console application in the current directory.
+
+```
+dotnet new console –-name ipcheck –-output .
+```
+
+6.	Create a new file in the ~/clouddrive/ipcheck directory named Dockerfile.
+Note: The command to create a new file in Bash is touch filename. The file name Dockerfile is case sensitive.
+
+```
+touch Dockerfile
+```
+
+7.	Open the embedded graphical editor in the context of the current directory.
+
+Note: You can open the editor by using the "code ." command or by selecting the editor button in the Cloud Shell toolbar. The editor will give us a view of the dotnet console app we just created.
+
+![Cloud Shell](../images/GraphicCloudShell.png)
+
+#### 2.70.6 Create and test a .NET application
+
+1.	In the graphical editor, open the Program.cs file and replace its contents with the following code, and then save the file: 
+
+```
+public class Program
+{
+    public static void Main(string[] args)
+    {        
+        // Check if network is available
+        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+        {
+            System.Console.WriteLine("Current IP Addresses:");
+
+            // Get host entry for current hostname
+            string hostname = System.Net.Dns.GetHostName();
+            System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry(hostname);
+                
+            // Iterate over each IP address and render their values
+            foreach(System.Net.IPAddress address in host.AddressList)
+            {
+                System.Console.WriteLine($"\t{address}");
+            }
+        }
+        else
+        {
+            System.Console.WriteLine("No Network Connection");
+        }
+    }
+}
+```
+
+2. Use the *dotnet run* command at the command prompt to run the application and validate that it finds one or more IP addresses.
+
+```
+dotnet run
+```
+
+3. Open the Dockerfile file in the graphical editor, replace its contents with the following code, and then save the file: 
+
+```
+# Start using the .NET Core 2.2 SDK container image
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine AS build
+
+# Change current working directory
+WORKDIR /app
+
+# Copy existing files from host machine
+COPY . ./
+
+# Publish application to the "out" folder
+RUN dotnet publish --configuration Release --output out
+
+# Start container by running application DLL
+ENTRYPOINT ["dotnet", "out/ipcheck.dll"]
+```
+
+#### 2.70.7 Create a Container Registry resource
+
+Create a new container registry with the following details:
+1. Resource group: ContainerCompute
+
+1. Name: Any globally unique name [uniquename123lowercase]
+
+1. Location: Australia SouthEast
+
+1. SKU: Basic
+
+1. Click Review + Create
+
+#### 2.70.8 Open Azure Cloud Shell and store Container Registry metadata
+
+1.	Open Cloud Shell.
+
+1.	At the Cloud Shell command prompt, use the az acr list command to get a list of all container registries in your subscription.
+
+1.	Use the following command to output the name of the most recently created container registry: 
+
+```
+az acr list --query "max_by([], &creationDate).name" --output tsv
+```
+
+4.	Use the following command to save the name of the most recently created container registry in a Bash shell variable named acrName: 
+```
+acrName=$(az acr list --query "max_by([], &creationDate).name" --output tsv)
+```
+
+5.	Use the following script to render the value of the Bash shell variable acrName: 
+echo $acrName
 
 
-### ![Reading][reading] Further Exercise
+#### Deploy a Docker container image to Container Registry
 
-* You can implement this Batch Account, Pool, Job and Task programmatically using the C# sample project included with the sample files.
+1. Change the active directory to ~/clouddrive/ipcheck.
+
+2. Use the dir command to get the contents of the current directory.
+
+> You’ll know that you’re in the correct directory if both the Program.cs and Dockerfile files that you edited earlier in this lab are there.
+
+3. Use the following command to upload the source code to your container registry and build the container image as a Container Registry task:
+
+```
+az acr build --registry $acrName --image ipcheck:latest .
+```
+
+#### 2.70.9 Deploy a Docker container image to Container Registry
+
+1. Access the container registry that you created earlier in this lab.
+
+1. Select the Repositories link to find your images in the registry.
+
+1. Proceed through the Images and Tags blades to find the metadata associated with the ipcheck image with the latest tag.
+
+> You can also select the Run ID link to find the build task metadata.
+
+That completes this module where you created a .NET console application to display a machine’s current IP address. You then added the Dockerfile file to the application to convert it into a Docker container image. Finally, you deployed the container image to the Azure Container Registry.
+
+Please don't delete these resources.
 
 
 [activity]: ../icons/activity.png "Workshop Activity!"
