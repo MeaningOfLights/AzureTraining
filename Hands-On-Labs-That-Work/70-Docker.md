@@ -135,9 +135,13 @@ Note: The command to create a new file in Bash is touch filename. The file name 
 touch Dockerfile
 ```
 
-7.	Open the embedded graphical editor in the context of the current directory.
+7.	Open the embedded graphical editor in the context of the current directory:
 
-Note: You can open the editor by using the "code ." command or by selecting the editor button in the Cloud Shell toolbar. The editor will give us a view of the dotnet console app we just created.
+```
+code .
+```
+
+Note: You open the editor by using the "code ." command or by selecting the editor button in the Cloud Shell toolbar. The editor will give us a view of the dotnet console app we just created.
 
 ![Cloud Shell](../images/GraphicCloudShell.png)
 
