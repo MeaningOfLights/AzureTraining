@@ -100,7 +100,7 @@ Same as Windows the VM creation experience in the portal is presented in a "wiza
 
 #### 2.20.4 Configure Disks for the VM
 
-![Configure the VM](../images/configure-vm-3.jpg)
+![Configure the VM](../images/configure-vm-4.jpg)
 
 1. Click Next to move to the Disks tab. Recall with your everyday computer you get an operating system which is typically installed on a disk (C:) and Temporary disk (D:). Let's add an extra data disk as well.
 
@@ -108,7 +108,7 @@ Same as Windows the VM creation experience in the portal is presented in a "wiza
 
 1. Click the Create and attach a new disk link in the DATA DISKS section.
 
-![Configure the DataDisk](../images/configure-vm-4.jpg)
+![Configure the DataDisk](../images/configure-vm-5.jpg)
 
 4. You can accept all the defaults: Premium SSD, 1023 GB, and None (empty disk); 
 
@@ -118,7 +118,6 @@ Same as Windows the VM creation experience in the portal is presented in a "wiza
 
 6. There should now be a new disk in the first row.
 
-![Configure the DataDisk](../images/configure-vm-5.jpg)
 
 #### 2.20.5 Configure the Network
 
@@ -176,6 +175,8 @@ ERrD9L4URL9HP2GbWno=
 Please don't skip this step!!
 
 
+![PuTTY Gen](../images/PuTTYGEN-1.png)
+
 #### 2.20.9 Login to the VM - via Putty
 
 1. Open PuTTY (not PuttyGen).
@@ -199,7 +200,7 @@ Please don't skip this step!!
 > We are using PuTTY for this exercise, this is optional, please skip to 2.20.11 if you're ok with PuTTY.
 
 
-1. Select the Linxu VM.
+1. Select the Linux VM.
 
 1. Click the Connect > SSH at the top of the pane.
 

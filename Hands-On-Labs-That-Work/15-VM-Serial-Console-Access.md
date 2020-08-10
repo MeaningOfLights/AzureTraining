@@ -24,9 +24,15 @@ Managing and running virtual machines can be hard. Azure offer extensive tools t
 
 5. Type cmd and press enter and notice the **Cmd Channel** response.
 
-6. Type ch -sn **Cmd Channel** and press enter.
+6. Type: 
 
-7. Enter your username and the password you set when you created this VM with a blank domain.
+```
+ch -sn **Cmd Channel**.
+```
+
+7. Press enter.
+
+8. Enter your username and the password you set when you created this VM with a blank domain.
 
 ![Serial Console](../images/SerialConsole-2.png)
 

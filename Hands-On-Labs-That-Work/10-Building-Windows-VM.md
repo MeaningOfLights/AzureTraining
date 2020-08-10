@@ -63,11 +63,12 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 > Note: We can adjust the network ports after we create the VM.
 
-
 ![Configure the VM](../images/configure-vm-3.jpg)
 
 
 #### 2.10.3 Configure Disks for the VM
+
+![Configure the DataDisk](../images/configure-vm-4.jpg)
 
 1. Click Next to move to the Disks section.
 
@@ -77,7 +78,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 3. Click the Create button and attach a new disk link in the DATA DISKS section.
 
-![Configure the DataDisk](../images/configure-vm-4.jpg)
+![Configure the DataDisk](../images/configure-vm-5.jpg)
 
 4. You can take all the defaults: Premium SSD, 1023 GB, and None (empty disk); although notice we could use a snapshot, or Storage Blob to create a VHD.
 
@@ -85,7 +86,6 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 6. There should now be a new disk in the first row.
 
-![Configure the DataDisk](../images/configure-vm-5.jpg)
 
 #### 2.10.4 Configure the Network
 
