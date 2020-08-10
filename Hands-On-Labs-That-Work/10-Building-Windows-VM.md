@@ -49,7 +49,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 6. Leave image set to "Windows Server 2019 Datacenter". You can open the drop-down list to see all the options available.
 
-7. The Size field is not directly editable and has a DS1 default size. Click the Change size link to explore other VM sizes. Look at the top of the screenshot for Size:
+7. Click the Change size link to explore other VM sizes:
 
 ![Configure the VM](../images/configure-vm-2.jpg)
 
