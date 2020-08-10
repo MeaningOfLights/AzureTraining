@@ -108,6 +108,8 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 6. Click OK.
 
+7. Set the Select inbound ports to allow Port 80 as well as port 3389.
+
 > By default, Azure will create a virtual network, network interface, and public IP for your VM. PLease note it is not trivial to change the networking options after the VM has been created so always double-check the network assignments on services you create in Azure.
 
 #### 2.10.5 VM Management
@@ -132,7 +134,11 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 ![Collect the IP Address](../images/RDPin.png)
 
-1. Click Start > Run > and type MSTSC > enter
+1. Click Start > Run > and type 
+
+```
+MSTSC
+```
 
 1. In the Remote Desktop Protocol login window paste the IP Address of the VM you copied previously.
 
@@ -142,15 +148,17 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 #### 2.10.7 Installing IIS
 
-1. Once logged in to the VM, open Server Manager
+1. Once logged in to the VM, open Server Manager.
 
-1. Click "2. Add Roles and Features" 
+1. Click "2. Add Roles and Features".
 
-1. Next > Next > Next > choose Web Server (IIS) > click Add Features
+1. Next > Next > Next > choose Web Server (IIS) > click Add Features.
 
-1. Next > Next > Next > Next > Install
+1. Next > Next > Next > Next > Install.
 
 1. Open IE inside the VM and Browse to http://localhost and you should see Internet Information Services home page.
+
+1. Since we enabled port 80 we can visit the default IIS Website using the IP Address of our VM into a Web Browser. Make sure you use a Web Browser outside your VM and paste in the VMs IP Address.
 
 That completes setting up a Windows VM that we will use in further exercises.
 

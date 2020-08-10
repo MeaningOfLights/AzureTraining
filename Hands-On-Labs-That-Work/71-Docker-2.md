@@ -48,7 +48,7 @@ Ref: https://microsoftlearning.github.io/AZ-204-DevelopingSolutionsforMicrosoftA
 
 3. Create a new container instance with the following information using the Access keys credentials that you recorded earlier in this lab:
 
-![Container Registry](../images/container-instance.png)
+![Container Instance](../images/container-instance.png)
 
 * Resource group: ContainerCompute
 * Container name: managedcompute
