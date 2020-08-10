@@ -181,7 +181,7 @@ Please don't skip this step!!
 
 1. Open PuTTY (not PuttyGen).
 
-1. Paste in the IP addrress you copied to notepad into the Hst Name (or IP Address) field.
+1. Paste in the IP addrress you copied to notepad into the Host Name (or IP Address) field.
 
 ![PuTTY session](../images/PuttyLogin.png)
 

@@ -25,20 +25,22 @@ These rules  (65000, 65501, 65500) can't be deleted or modified.
 
 #### 2.30.3 Additional Network Security Groups
 
-In the previous exercise we configured two rules when we setup the VM to allow SSH access and public website internet access over port 80:
+In the previous exercise we configured two rules when we setup the VM to allow SSH access and public website internet access over port 22:
 
 * Port 22 (SSH Access).
 * Port 80 (Browse HTTP).
 
-When defining these rules we need to take security into perspective. To restrict anyone connecting to the virtual machine let's be a bit more specific and edit the port 80 rule: 
+When defining these rules we need to take security into perspective. To restrict anyone connecting to the virtual machine let's be a bit more specific and edit the port 22 rule: 
 
 1. Edit the SSH port 22 InBound Security Rule.
 
-1. In the Source set the IP address of your laptop or your workstation to make it more secure. Instead of Source Any *.
+1. Google the IP Address of your machine http://google.com/search?q=my+ip+address
+
+1. In the Source, set the IP address to your laptop or your workstation, replacing Source Any *.
 
 1. In the Destination select the virtual network and then click on save.
 
-Here we are making the remote desktop access more secure by restricting it to our IP address (instead of Any IP address) allowing only us to access the Virtual Network (instead of Any destination).
+> Here we are making the remote desktop access more secure by restricting it to our IP address (instead of Any IP address) allowing only us to access the Virtual Network (instead of Any destination).
 
 #### 2.30.4 Priority
 
@@ -60,6 +62,7 @@ Here we are making the remote desktop access more secure by restricting it to ou
 
 So when the request comes to our virtual machine it is evaluated in order of priority. Also note that Network Security Groups can double as Network Access Control Lists (NACLs) in they can allow or deny traffic at the Subnet or the VM level.
 
+9. Lastly remove the Network Security Group Denying Port 80 so that we can reach the server's MGINX website.
 
 That completes this chapter on the basics of network security groups.
 
