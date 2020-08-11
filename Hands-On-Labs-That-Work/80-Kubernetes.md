@@ -19,27 +19,26 @@ Now we come to the part where we're going to be looking at Azure Kubernetes as a
 
 1. Select the Kubernetes.
 
-![See All Resources](../images/K8-1.png)
 
 3. Create a new Resource Group K8RG and enter Cluster name k8cluster. Notice at the bottom you can set the number of Nodes, leave 3 as default. The nodes are the Virtual Machines hosting the containers.
 
-![See All Resources](../images/K8-2.png)
+![See All Resources](../images/K8-1.png)
 
 4. Next is the Node Pools where we define the scaling behaviour. Leave the defaults.
 
-![See All Resources](../images/K8-3.png)
+![See All Resources](../images/K8-2.png)
 
 5. In the Authentication tab is the Service Princial that allows Kubernetes to talk with other Azure services. For example if Kubernetes needs to pick up the Container from the Container Registry then it will use this Service Principal account.
 
-![See All Resources](../images/K8-4.png)
+![See All Resources](../images/K8-3.png)
 
 6. In the Networking tab by clicking Advanced you can make the Kubernetes cluster run as part of the Virtual Network. Choose a new Virtual Network.
 
-![See All Resources](../images/K8-5.png)
+![See All Resources](../images/K8-4.png)
 
 7. Intergations is where you can setup monitoring. Leave the defaults. 
 
-![See All Resources](../images/K8-6.png)
+![See All Resources](../images/K8-5.png)
 
 8. DONT CLICK Review and Create, instead we are going to use the CLI to create a Kubernetes Cluster. I wanted to show you the Portal.
 

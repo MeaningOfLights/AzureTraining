@@ -96,7 +96,7 @@ To clarify, this means you have one Server exposed to the internet in a Public s
 
 1. Now it is only possible to RDP into NCGNWIDA0002 from NCGNWIDA0001, adding a layer of security.
 
-1. Try it out. Start > Run > MSTSC > and RDP into the VM in the Private Subnet and it will fail.
+1. Because NCGNWIDA0002 doesn't have an I_P Address you can't RDP into it.
 
 1. Now RDP into NCGNWIDA0001, once logged in, then RDP into NCGNWIDA0002 and that will work. 
 

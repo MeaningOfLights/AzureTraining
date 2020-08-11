@@ -20,6 +20,11 @@ First we'll go ahead and create a Resource Group with the following details:
 
 1.	Set the location Australia Southeast
 
+```
+az group --name ContianerCompute --location australiasoutheast
+```
+
+
 #### 2.70.3 Create VM in using Cloud Shell
 
 ![Cloud Shell](../images/cloud-shell-bash.png)
@@ -28,54 +33,49 @@ First we'll go ahead and create a Resource Group with the following details:
 
 4.	Run this az command with the –help flag to find a list of subgroups and commands at the root level of the CLI.
 ```
-az -help
+az --help
 ```
 5.	Run this az vm command with the –help flag to find a list of subgroups and commands for Azure Virtual Machines:
 ```
-az vm -help
+az vm --help
 ```
 4.	Run this az vm create command with the –help flag to find a list of arguments and examples for the Create Virtual Machine command:
 ```
-az vm create -help
+az vm create --help
 ```
 5.	Run this az vm create command to create a new VM with the following settings:
 * Resource group: ContainerCompute
 * Name: quickvm
 * Image: Debian
 * Username: student
-* Password: Password123!!!
+* Password: P@ssw0rd456
 
 > Wait for the VM creation process to complete. After the process completes, the command will return a JavaScript Object Notation (JSON) file with details about the machine.
 
 ```
-az vm create –name quickvm –resource-group ContainerCompute –image Debian –admin-username student –admin-password Password123!!!
+az vm create --name quickvm --resource-group ContainerCompute --image Debian --admin-username student --admin-password P@ssw0rd456
 ```
 
-6.	Use the az vm show command to find a more detailed JSON file that contains various metadata about the newly created VM.
 
-```
-az vm show –ip <ip from above output>
-```
-
-7.	Use the az vm list-ip-addresses command to list all the IP addresses associated with the VM: 
+6.	Use the az vm list-ip-addresses command to list all the IP addresses associated with the VM: 
 
 ```
 az vm list-ip-addresses --resource-group ContainerCompute --name quickvm
 ```
 
-8.	Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
+7.	Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
 
 ```
 az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv
 ```
 
-9.	Run this command to store the results of the previous command in a new Bash shell variable named ipAddress: 
+8.	Run this command to store the results of the previous command in a new Bash shell variable named ipAddress: 
 
 ```
 ipAddress=$(az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)
 ```
 
-10.	Run this command to render the value of the Bash shell variable ipAddress: 
+9.	Run this command to render the value of the Bash shell variable ipAddress: 
 
 ```
 echo $ipAddress
@@ -87,15 +87,15 @@ echo $ipAddress
 ssh student@$ipAddress
 ```
 
-12.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password Password123!!! when prompted for credentials
+11.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password P@ssw0rd456 when prompted for credentials
 
-13.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
+12.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
 
 ```
 uname -a
 ```
 
-14.	Use the exit command to end your SSH session: 
+13.	Use the exit command to end your SSH session: 
 ```
 exit
 ```
@@ -122,6 +122,11 @@ mkdir ipcheck
 ```
 
 4.	Issue the command to change the directory to ~/clouddrive/ipcheck.
+
+```
+cd ~/clouddrive/ipcheck
+```
+
 5.	Use the dotnet new console –output . –name ipcheck command to create a new .NET console application in the current directory.
 
 ```

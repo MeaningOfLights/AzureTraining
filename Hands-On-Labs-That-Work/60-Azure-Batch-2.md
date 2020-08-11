@@ -36,9 +36,9 @@ The Storage Account will be used to store the application which is going to run 
 
 1. Scroll down under the Blob Service menu and click Containers.
 
-1. Create a container called input (used to store all the input files which are going to go into the Batch Account).
+1. Click + Add and create a container called input (used to store all the input files which are going to go into the Batch Account).
 
-1. Optionally create another container called output, we won't use it in this demo (note the screenshot only shows an output folder, you need to create an Input folder).
+1. Optionally create another container called output, we won't use it in this demo.
 
 ![Input & Output folders](../images/blobcontainers.png)
 
@@ -48,11 +48,11 @@ The Storage Account will be used to store the application which is going to run 
 
 #### 2.60.3 Create Batch Account
 
-1. Now let's go ahead and create our Azure Batch Account, in the resourcestop search bar, search and choose Batch Account (not Batch Service) and click on Create.
+1. Now let's go ahead and create our Azure Batch Account, in the resources top search bar, search and choose Batch Account and click on Create.
 
 ![Batch Account](../images/BatchService.png)
 
-2. Select a resource group and give an account name. namebatch123
+2. Select a resource group and give an account name: namebatch123
 
 3. Choose the Australia SouthEast region.
 
@@ -60,10 +60,10 @@ The Storage Account will be used to store the application which is going to run 
 
 ![Batch Account](../images/BatchService1.png)
 
-5. Click Advanced and in the pool allocation mode you have two choices; either the Batch Account or the user subscription.
+5. Click Advanced and in the pool allocation mode you have two choices; either the Batch Account or the User Subscription.
 
-* Choose the Batch Account the virtual machines used to do the processing as part of the Azure Batch Account will be managed by the account or the service itself.
-* If you want to manage the virtual machines yourself you can make it part of the user subscription, leave the default as the Batch Account.
+* Choose the Batch Account so the virtual machines used to do the processing as part of the Azure Batch Account will be managed by the account or the service itself.
+* If you want to manage the virtual machines yourself you can make it part of the User Subscription, leave the default as the Batch Account.
 
 6. Don't add any tags simply click Review and Create to create the Batch Account.
 
@@ -88,23 +88,23 @@ Now our zip package is uploaded to our Storage Account and we can now see the ap
 
 1. Click on the Pools menu under Batch Account to add a pool for our virtual machines.
 
-![Setup Batch Account](../images/BatchService3.png)
+![Setup Batch Pools](../images/BatchService3.png)
 
 2. Click on Add
 3. Specify a Pool ID: pool1
-4. Image Type: Windows 2016 as the underlying image for the virtual machines 
-5. Leave the size as one core and three point five GB of memory. 
+4. Image Type: Windows 2016 
+5. Leave the size as is (one core and three point five GB of memory). 
 6. Next specify the number of dedicated nodes (1) and the number of low priority nodes (0).
+
+![Setup Batch Service](../images/BatchService4.png)
 
 * Remember the low priority nodes are least expensive.
 * If there is a shortage of resources on the Azure platform overall low priority nodes will be taken back from you.
 * For the purpose of this demo I'm going to ensure that I have one dedicated node as part of my pool. If you want check out the auto scale features here. 
 * If you auto scale you need to provide a formula to scale the number of virtual machines in the pool. For now I'll just leave it as fixed. 
-* If you want you can decide on whether you want to have one task as a start task that will run on each node when it's created as part of the pool, for now I'll leave it as disabled.
 
-You can see there are many other options that you can specify as part of the pool.  
+You can see there are many other options that you can specify as part of the pool this is because the Batch Service is intended as a High Performance service designed to process large batches of data.  
 
-![Setup Batch Account](../images/BatchService4.png)
 
 7. Specify the application packages that need to be installed in the pool of virtual machines.
 8. Choose the FFMPEG application and the version of 1.0 
@@ -113,8 +113,8 @@ You can see there are many other options that you can specify as part of the poo
 ![Setup Batch Account](../images/BatchService5.png)
 
 10. Finally click OK to add the pool
-11. Refresh the page and you can now see that the demo pool has been created.
-* You can see the allocation state is 'resizing' when it is creating the dedicated nodes. It's basically now spinning up a virtual machine as part of this pool.
+11. Refresh the page and you can now see that the pool has been created.
+* You can see the allocation state is 'resizing' when it is creating the dedicated nodes. It's basically spinning up a virtual machine as part of this pool.
 * Our video processing job will then run on this virtual machine in this pool.
 * Please note you can have a number of dedicated nodes and if you have multiple jobs they can run across these nodes in parallel. We have one node as part of the pool as part of our Batch Account for this demo.
 
@@ -124,11 +124,8 @@ You can see there are many other options that you can specify as part of the poo
 
 1. Now click on the Jobs menu under Pools and create a job to run as part of our Batch Account.
 1. Click on Add. 
-
 3. Give the job a name or job id.
-
 4. Select the pool.
-
 5. Click OK to create our job.
 
 Let's click on the job and now we can add tasks to this job.
@@ -143,7 +140,7 @@ We want to run a task that's going to convert the sample.MP4 file in our Storage
 
 ![Setup Batch Account](../images/BatchService7.png)
 
-2. Let's add the task ID or just set a name for the task: Task1
+2. Set a name for the task: Task1
 3. Next is specifying the command line for what our task going to do.
 4. Add this command line.
 
@@ -152,9 +149,9 @@ cmd /c
 %AZ_BATCH_APP_PACKAGE_ffmpegbatch#1.0%\\ffmpeg.exe -i sample.mp4 -ss 00:00:01 -t 00:00:45.0 -q:a 0 -map a sample.mp3
 ```
 
-* Let's quickly examine the above command. We reference our package in the Batch Account via the AZ_BATCH_APP_PACKAGE_ default defined constant, followed by the package id and then the version number.
+* Let's quickly examine the above command. We reference our package in the Batch Account via the AZ_BATCH_APP_PACKAGE_ default defined constant, followed by the package id, the # sign is a delimiter and then the version number followed by the % sign.
 
-Using this path we can reference the application through the command line and the rest of the command is the same as the one we ran locally on our machines previously.
+Using this path we can reference the application through the command line and the rest of the command is the same as the one we ran locally on our pyhiscal machines previously.
 
 ![Setup Batch Account](../images/BatchService8.png)
 

@@ -37,7 +37,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 1. Select the Subscription that should be billed for VM hours.
 
-1. For Resource group, create a new one called: AzureTraingingExercise1
+1. For Resource group, create a new one called: AzureWorkShopExer1
 
 1. In the Instance Details section, enter a name for your VM, such as NCGWIDA0001 (for Windows Internal Desktop Application).
 
@@ -59,9 +59,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 9. Confirm the password. eg Password555!!!
 
-10. In the Inbound Port Rules section, open the list and choose Allow selected ports. Since this is a Windows VM, we want to be able to access using RDP. Have a look in the list and you'll find RDP (3389). 
-
-> Note: We can adjust the network ports after we create the VM.
+> Note: We can adjust the inbound ports in the network section or after we create the VM.
 
 ![Configure the VM](../images/configure-vm-3.jpg)
 
@@ -93,7 +91,13 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 1. Click Next to move to the Networking section.
 
-1. In a production system where we already have other components we want to utilize an existing virtual network. This way our VM can communicate with the other cloud services in our solution. If there isn't one defined in this location we can create and configure it here.
+1. Set the Select inbound ports to allow Port 80 as well as port 3389.
+
+1. Under Virtual Networks click Create New. 
+
+> By default, Azure will create a virtual network, network interface, and public IP for your VM. Please note it is not trivial to change the networking options after the VM has been created so always double-check the network assignments on services you create in Azure before creating them.
+
+> In a production system where we already have other components we want to utilize an existing virtual network. This way our VM can communicate with the other services in our solution. There isn't one defined so we will create and configure it here.
 
 * Address space: the overall IPV4 space available to this network.
 * Subnet range: the first subnet to subdivide the address space - it must fit within the defined address space. Once the VNet is created, you can add additional subnets.
@@ -108,9 +112,7 @@ The VM creation experience in the portal is presented in a "wizard" format to wa
 
 6. Click OK.
 
-7. Set the Select inbound ports to allow Port 80 as well as port 3389.
 
-> By default, Azure will create a virtual network, network interface, and public IP for your VM. PLease note it is not trivial to change the networking options after the VM has been created so always double-check the network assignments on services you create in Azure.
 
 #### 2.10.5 VM Management
 
@@ -142,7 +144,7 @@ MSTSC
 
 1. In the Remote Desktop Protocol login window paste the IP Address of the VM you copied previously.
 
-1. When prompted enter the username and password you used when you created the VM.
+1. When prompted enter the username and password you used when you created the VM (yourname & Password555!!!).
 
 ![RDP in using credentials to create machine](../images/RDPin2.png)
 
