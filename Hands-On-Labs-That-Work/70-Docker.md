@@ -21,9 +21,8 @@ First we'll go ahead and create a Resource Group with the following details:
 1.	Set the location Australia Southeast
 
 ```
-az group --name ContianerCompute --location australiasoutheast
+az group --name ContainerCompute --location australiasoutheast
 ```
-
 
 #### 2.70.3 Create VM in using Cloud Shell
 
@@ -31,24 +30,27 @@ az group --name ContianerCompute --location australiasoutheast
 
 3.	Open a new Cloud Shell instance in the Azure portal using Bash
 
-4.	Run this az command with the –help flag to find a list of subgroups and commands at the root level of the CLI.
+4.	Run this az command with the --help flag to find a list of subgroups and commands at the root level of the CLI.
 ```
 az --help
 ```
-5.	Run this az vm command with the –help flag to find a list of subgroups and commands for Azure Virtual Machines:
+5.	Run this az vm command with the -help flag to find a list of subgroups and commands for Azure Virtual Machines:
 ```
 az vm --help
 ```
-4.	Run this az vm create command with the –help flag to find a list of arguments and examples for the Create Virtual Machine command:
+4.	Run this az vm create command with the --help flag to find a list of arguments and examples for the Create Virtual Machine command:
 ```
 az vm create --help
 ```
+
+Essentially you should be able work out how to put togeether the following command yourself using Help.
+
 5.	Run this az vm create command to create a new VM with the following settings:
 * Resource group: ContainerCompute
 * Name: quickvm
 * Image: Debian
 * Username: student
-* Password: P@ssw0rd456
+* Password: P@ssw0rd456abc
 
 > Wait for the VM creation process to complete. After the process completes, the command will return a JavaScript Object Notation (JSON) file with details about the machine.
 
@@ -56,55 +58,43 @@ az vm create --help
 az vm create --name quickvm --resource-group ContainerCompute --image Debian --admin-username student --admin-password P@ssw0rd456
 ```
 
-
-6.	Use the az vm list-ip-addresses command to list all the IP addresses associated with the VM: 
-
-```
-az vm list-ip-addresses --resource-group ContainerCompute --name quickvm
-```
-
-7.	Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
+6. Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
 
 ```
 az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv
 ```
 
-8.	Run this command to store the results of the previous command in a new Bash shell variable named ipAddress: 
-
+7. Run this command to store the results of the previous command in a new Bash shell variable named ipAddress:
 ```
 ipAddress=$(az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)
 ```
 
-9.	Run this command to render the value of the Bash shell variable ipAddress: 
-
+8. Run this command to render the value of the Bash shell variable ipAddress:
 ```
 echo $ipAddress
 ```
 
-10.	Run this command to connect to the VM that you created earlier in this lab by using the Secure Shell (SSH) tool and the IP address stored in the Bash shell variable ipAddress: 
+9.	Open a command prompt and run this command to connect to the VM via SSH and the IP address stored in the Bash shell variable ipAddress: 
 
 ```
 ssh student@$ipAddress
 ```
 
-11.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password P@ssw0rd456 when prompted for credentials
+10.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password P@ssw0rd456abc when prompted for credentials
 
-12.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
+11.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
 
 ```
 uname -a
 ```
 
-13.	Use the exit command to end your SSH session: 
-```
-exit
-```
 
 ### ![Create and deploy Docker container image][activity] 2.70.4 Create a Docker container image and deploy container registry
 
 #### 2.70.5 Open the Cloud Shell and editor
 
 1.	In the Cloud Shell instance in the Azure portal.
+
 1.	Change the active directory to ~/clouddrive.
 
 > The command to change directory in Bash is *cd path*.
@@ -127,10 +117,10 @@ mkdir ipcheck
 cd ~/clouddrive/ipcheck
 ```
 
-5.	Use the dotnet new console –output . –name ipcheck command to create a new .NET console application in the current directory.
+5.	Use the dotnet new console -output . -name ipcheck command to create a new .NET console application in the current directory.
 
-```
-dotnet new console –-name ipcheck –-output .
+```  
+dotnet new console --name ipcheck --output .
 ```
 
 6.	Create a new file in the ~/clouddrive/ipcheck directory named Dockerfile.
