@@ -24,78 +24,17 @@ First we'll go ahead and create a Resource Group with the following details:
 az group create --name ContainerCompute --location australiasoutheast
 ```
 
-#### 2.70.3 Create VM in using Cloud Shell
+
+### ![Create and deploy Docker container image][activity] 2.70.3 Create a Docker container image and deploy container registry
+
+#### 2.70.4 Open the Cloud Shell and editor
+
+
+1.	In the Cloud Shell instance in the Azure portal, open the BASH option (or use the Powershell with the commands pictured below).
 
 ![Cloud Shell](../images/cloud-shell-bash.png)
 
-3.	Open a new Cloud Shell instance in the Azure portal using Bash
-
-4.	Run this az command with the --help flag to find a list of subgroups and commands at the root level of the CLI.
-```
-az --help
-```
-5.	Run this az vm command with the -help flag to find a list of subgroups and commands for Azure Virtual Machines:
-```
-az vm --help
-```
-4.	Run this az vm create command with the --help flag to find a list of arguments and examples for the Create Virtual Machine command:
-```
-az vm create --help
-```
-
-Essentially you should be able work out how to put togeether the following command yourself using Help.
-
-5.	Run this az vm create command to create a new VM with the following settings:
-* Resource group: ContainerCompute
-* Name: quickvm
-* Image: Debian
-* Username: student
-* Password: P@ssw0rd456abc
-
-> Wait for the VM creation process to complete. After the process completes, the command will return a JavaScript Object Notation (JSON) file with details about the machine.
-
-```
-az vm create --name quickvm --resource-group ContainerCompute --image Debian --admin-username student --admin-password P@ssw0rd456
-```
-
-6. Use the az vm list-ip-addresses command and the –query argument to filter the output to only return the first IP address value:
-
-```
-az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv
-```
-
-7. Run this command to store the results of the previous command in a new Bash shell variable named ipAddress:
-```
-ipAddress=$(az vm list-ip-addresses --resource-group ContainerCompute --name quickvm --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)
-```
-
-8. Run this command to render the value of the Bash shell variable ipAddress:
-```
-echo $ipAddress
-```
-
-9.	Open a command prompt and run this command to connect to the VM via SSH and the IP address stored in the Bash shell variable ipAddress: 
-
-```
-ssh student@$ipAddress
-```
-
-10.	During the connection process, you’ll receive a warning that the authenticity of the host can’t be verified. Continue connecting to the host. Finally, use the password P@ssw0rd456abc when prompted for credentials
-
-11.	After connecting to the VM, use the following command to get information about the machine to ensure that you’re connected to the correct VM: 
-
-```
-uname -a
-```
-
-
-### ![Create and deploy Docker container image][activity] 2.70.4 Create a Docker container image and deploy container registry
-
-#### 2.70.5 Open the Cloud Shell and editor
-
-1.	In the Cloud Shell instance in the Azure portal.
-
-1.	Change the active directory to ~/clouddrive.
+2.	Change the active directory to ~/clouddrive.
 
 > The command to change directory in Bash is *cd path*.
 
@@ -212,7 +151,7 @@ Create a new container registry with the following details:
 
 #### 2.70.8 Open Azure Cloud Shell and store Container Registry metadata
 
-1.	Open Cloud Shell.
+1.	Open Cloud Shell and make sure its in BASH mode for these steps.
 
 1.	At the Cloud Shell command prompt, use the az acr list command to get a list of all container registries in your subscription.
 
@@ -228,8 +167,9 @@ acrName=$(az acr list --query "max_by([], &creationDate).name" --output tsv)
 ```
 
 5.	Use the following script to render the value of the Bash shell variable acrName: 
+```
 echo $acrName
-
+```
 
 #### Deploy a Docker container image to Container Registry
 
@@ -257,7 +197,7 @@ az acr build --registry $acrName --image ipcheck:latest .
 
 That completes this module where you created a .NET console application to display a machine’s current IP address. You then added the Dockerfile file to the application to convert it into a Docker container image. Finally, you deployed the container image to the Azure Container Registry.
 
-Please don't delete these resources.
+Please don't delete these resources, they're needed for the next exercise.
 
 
 [activity]: ../icons/activity.png "Workshop Activity!"
