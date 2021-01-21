@@ -182,7 +182,7 @@ dotnet run
 
 ```
 # Start using the .NET Core 2.2 SDK container image
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:3.1-alpine AS build
 
 # Change current working directory
 WORKDIR /app
