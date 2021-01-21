@@ -153,6 +153,13 @@ sudo nginx -s reload
 
 ![NGINX Config](../images/dotnetonlinux.png)
 
+If you get a 502 Gateway error, it's because you have reloaded the NGINX webserver which has caused the hosting of the dotnet project to stop. To fix it go to the publish directory again and run
+
+```
+dotnet coreproj.dll
+```
+
+Now refresh the webpage.
 
 
 ### ![Setup a Docker container image][activity] 1.73.6 Setup the Docker container image 
