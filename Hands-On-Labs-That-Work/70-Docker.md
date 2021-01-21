@@ -21,7 +21,7 @@ First we'll go ahead and create a Resource Group with the following details:
 1.	Set the location Australia Southeast
 
 ```
-az group --name ContainerCompute --location australiasoutheast
+az group create --name ContainerCompute --location australiasoutheast
 ```
 
 #### 2.70.3 Create VM in using Cloud Shell
