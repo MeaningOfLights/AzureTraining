@@ -84,7 +84,7 @@ az aks create --resource-group kubernetesgrp --name democluster --node-count 1 -
 az aks install-cli --install-location=./kubectl
 ```
 
-If this fails to install, with an error [Errno 13] Permission denied: '/usr/local/bin/kubelogin'  try the other PuTTY window and cd ~/publish and then try to install.
+If this fails to install, with an error [Errno 13] Permission denied: '/usr/local/bin/kubelogin'  try using PuTTY instead of CloudShell to install.
 
 ![Install Kubectl](../images/K8InstallKubectl.png)
 
