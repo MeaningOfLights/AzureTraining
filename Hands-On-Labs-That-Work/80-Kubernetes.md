@@ -78,13 +78,18 @@ az aks create --resource-group kubernetesgrp --name democluster --node-count 1 -
 
 #### 2.80.3 Installing kubectl
 
-1. Next we will install kube ctl its available via the following command:
+1. On a Linux VM you would need to run this command, in Cloud Shell its no longer needed. To install kube ctl its available via the following command:
 
 ```
 az aks install-cli --install-location=./kubectl
 ```
 
-If this fails to install, with an error [Errno 13] Permission denied: '/usr/local/bin/kubelogin'  try using PuTTY instead of CloudShell to install.
+If this fails to install, with an error [Errno 13] Permission denied: '/usr/local/bin/kubelogin'  try running this command to confirm its already installed:
+
+```
+kubectl cluster-info
+```
+
 
 ![Install Kubectl](../images/K8InstallKubectl.png)
 
