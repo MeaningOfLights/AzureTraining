@@ -42,7 +42,7 @@ az acr list
 eg:
 ```
 $ACR_RESOURCE_GROUP="ContainerCompute"
-$ACR_NAME="managedcompute"
+$ACR_NAME="jeremyacr123"
 ```
 
 2. Get the Client ID from our Cluster, we do this using the Service Principal Profile:
