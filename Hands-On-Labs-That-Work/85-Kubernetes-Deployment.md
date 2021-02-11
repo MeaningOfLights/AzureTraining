@@ -35,6 +35,16 @@ $ACR_RESOURCE_GROUP="using the az acr list command find this out yourself"
 $ACR_NAME="using the az acr list command find this out"
 ```
 
+```
+az acr list
+```
+
+eg:
+```
+$ACR_RESOURCE_GROUP="ContainerCompute"
+$ACR_NAME="jeremyacr123"
+```
+
 2. Get the Client ID from our Cluster, we do this using the Service Principal Profile:
 
 ```
