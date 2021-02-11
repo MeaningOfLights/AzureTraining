@@ -111,7 +111,7 @@ public class Program
 }
 ```
 
-2. Use the *dotnet run* command at the command prompt to run the application and validate that it finds one or more IP addresses.
+2. Use the *dotnet run* command at the command prompt to run the application and validate that it finds one or more IP addresses. This command can have issues, if it times out don't worry just cancel it (Ctrl + C) and continue to the next step.
 
 ```
 dotnet run
