@@ -20,6 +20,9 @@ kubectl get all
 
 #### 2.85.2 Setting Service Principal Permissions
 
+UPDATE, Service PRincipals are no longer used, need to use Managed Service IDentities "MSI" SEE: https://stackoverflow.com/questions/66148579/az-aks-create-it-used-to-create-service-principal-now-managed-service-identity
+
+
 For the Kubernetes Cluster to talk to the Azure Container Registry it uses a Service Principal. We need to ensure the Service Principal has ACR pull permissions on the Container Registry.
 
 1. Set the following variables:
